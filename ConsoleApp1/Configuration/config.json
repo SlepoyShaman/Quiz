@@ -1,0 +1,15 @@
+{
+  "QuestionsCount": 2,
+  "Questions": [
+    {
+      "Question": "A?",
+      "AnswerOptions": [ "1-Б", "2-Шо", "3-Каво", "4-Да я" ],
+      "NumberOfCorrect": 4
+    },
+    {
+      "Question": "Кто?",
+      "AnswerOptions": [ "1-Б", "2-Шо", "3-Каво", "4-Да я" ],
+      "NumberOfCorrect": 3
+    }
+  ]
+}
