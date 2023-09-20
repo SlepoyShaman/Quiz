@@ -5,6 +5,6 @@ namespace ConsoleApp1.Storage
     internal interface IGameInfoStorage
     {
         public Task SaveGameInfo(GameInfo info);
-        public IQueryable<GameInfo> LoadBestGamesInfo();
+        public Task<GameInfo[]> LoadBestGamesInfo();
     }
 }

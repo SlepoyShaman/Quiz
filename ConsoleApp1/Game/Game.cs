@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.Configuration;
 using ConsoleApp1.Questions;
+using ConsoleApp1.Storage;
 using System.Diagnostics;
 
 namespace ConsoleApp1.Game
@@ -8,16 +9,18 @@ namespace ConsoleApp1.Game
     {
         private readonly int _questionsCount;
         private readonly List<RootQuestion> _questions;
+        private readonly IGameInfoStorage _storage;
 
         private int _score = 0;
         private int _correctAnswersCount = 0;
         private TimeOnly _gameTime = new TimeOnly(0);
-        public Game(IConfiguration configuration)
+        public Game(IConfiguration configuration, IGameInfoStorage storage)
         {
             _questionsCount = configuration.GetQuestionsCount();
             _questions = configuration.GetQuestions();
+            _storage = storage;
         }
-        public void StartGame()
+        public async Task StartGame()
         {
             var stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -37,9 +40,10 @@ namespace ConsoleApp1.Game
             }
             stopWatch.Stop();
             _gameTime = _gameTime.Add(stopWatch.Elapsed);
+            await _storage.SaveGameInfo(GetInfo());
         }
 
-        public GameInfo GetInfo()
+        private GameInfo GetInfo()
             => new GameInfo()
             {
                 CorrectAnswersCount = _correctAnswersCount,

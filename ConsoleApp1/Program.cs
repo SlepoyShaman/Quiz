@@ -12,16 +12,13 @@ switch (choice)
 {
     case "y":
         {
-            var game = new Game(configuration);
-            game.StartGame();
-            var info = game.GetInfo();
-            Console.WriteLine(info.ToString());
-            await storage.SaveGameInfo(info);
+            var game = new Game(configuration, storage);
+            await game.StartGame();
             break;
         }
     case "r":
         {
-            var bestGames = storage.LoadBestGamesInfo();
+            var bestGames = await storage.LoadBestGamesInfo();
             foreach (var game in bestGames)
             {
                 Console.WriteLine(game.ToString());

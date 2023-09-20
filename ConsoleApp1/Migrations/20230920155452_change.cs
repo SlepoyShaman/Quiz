@@ -5,7 +5,7 @@
 namespace ConsoleApp1.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class change : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,12 +14,12 @@ namespace ConsoleApp1.Migrations
                 name: "Games",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GameTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CorrectAnswersCount = table.Column<int>(type: "int", nullable: false),
-                    GameDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Score = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    GameTime = table.Column<string>(type: "TEXT", nullable: false),
+                    CorrectAnswersCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    GameDate = table.Column<string>(type: "TEXT", nullable: false),
+                    Score = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
